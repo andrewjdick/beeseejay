@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { debounce } from "throttle-debounce";
 import { getIdeas, addIdea, updateIdea, deleteIdea } from "api/endpoints";
+import { IconButton } from "components/IconButton";
 import { Idea } from "./Idea";
 import { NoIdea } from "./NoIdea";
 import {
@@ -137,7 +138,9 @@ export class Ideas extends Component {
         <HeaderWrapper>
           <HeaderInnerWrapper>
             <StyledLoading isLoading={isLoading} />
-            <StyledPlusIcon onClick={() => this.handleIdeaAddDebounced()} />
+            <IconButton onClick={() => this.handleIdeaAddDebounced()}>
+              <StyledPlusIcon />
+            </IconButton>
           </HeaderInnerWrapper>
         </HeaderWrapper>
 

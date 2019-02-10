@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { IconButton } from "components/IconButton";
 import { Input } from "components/inputs/Input";
 import { MAX_CHARACTER_COUNT } from "components/inputs/TextArea";
 import {
@@ -80,11 +81,9 @@ export class Idea extends Component {
         />
 
         <InfoWrapper>
-          <StyledTrashIcon
-            width={20}
-            height={20}
-            onClick={() => onIdeaDeleteClick(id)}
-          />
+          <IconButton onClick={() => onIdeaDeleteClick(id)}>
+            <StyledTrashIcon width={20} height={20} />
+          </IconButton>
 
           {isBodyFocused && isBodyBelowThreshold && (
             <Counter charactersRemaining={charactersRemaining}>

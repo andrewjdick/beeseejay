@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IconButton } from "components/IconButton";
 import { PlusIcon } from "components/icons/PlusIcon";
 import { Select } from "components/inputs/Select";
 import { Loading } from "components/Loading";
@@ -26,9 +27,10 @@ export const Logo = styled.img`
   height: auto;
 `;
 
-export const StyledPlusIcon = styled(PlusIcon)`
+export const PlusIconButton = styled(IconButton)`
   margin-right: 10px;
-
+`;
+export const StyledPlusIcon = styled(PlusIcon)`
   &:hover {
     transform: rotate(90deg);
   }
