@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   border-bottom: 1px solid rgb(239, 239, 239);
   background-color: white;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.7);
 `;
 
 export const HeaderInnerWrapper = styled.div`

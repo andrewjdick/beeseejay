@@ -4,6 +4,7 @@ import { number } from "@storybook/addon-knobs";
 import { CloseIcon } from "./CloseIcon";
 import { PlusIcon } from "./PlusIcon";
 import { TrashIcon } from "./TrashIcon";
+import { CheckmarkIcon } from "./CheckmarkIcon";
 import { action } from "@storybook/addon-actions";
 
 export const iconSizeOptions = {
@@ -30,6 +31,13 @@ storiesOf("Components/icons", module)
   ))
   .add("TrashIcon", () => (
     <TrashIcon
+      width={number("width", 150, iconSizeOptions)}
+      height={number("height", 150, iconSizeOptions)}
+      onClick={action("icon clicked")}
+    />
+  ))
+  .add("CheckMarkIcon", () => (
+    <CheckmarkIcon
       width={number("width", 150, iconSizeOptions)}
       height={number("height", 150, iconSizeOptions)}
       onClick={action("icon clicked")}

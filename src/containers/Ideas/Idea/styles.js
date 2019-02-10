@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { Input } from "components/inputs/Input";
 import { TextArea } from "components/inputs/TextArea";
 import { TrashIcon } from "components/icons/TrashIcon";
+import { CheckmarkIcon } from "components/icons/CheckmarkIcon";
 import { media } from "media.js";
 
 export const CARD_DIMENSION = 150;
@@ -77,6 +78,7 @@ export const Counter = styled.span`
   font-size: 1.1rem;
   color: ${({ charactersRemaining }) =>
     charactersRemaining <= 5 ? "red" : "orange"};
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
 
   ${media.tablet`
     padding: 0 5px;
@@ -92,4 +94,19 @@ export const InfoWrapper = styled.div`
   ${media.tablet`
     margin-top: 5px;
   `};
+`;
+
+export const StyledCheckmarkIcon = styled(CheckmarkIcon).attrs(
+  ({ isChecked }) => ({
+    width: isChecked ? 16 : 0,
+    height: isChecked ? 16 : 0
+  })
+)`
+  color: green;
+  margin-left: 0;
+  transition: all 250ms linear;
+
+  ${({ isChecked }) => css`
+    margin-left: 7px;
+  `}
 `;

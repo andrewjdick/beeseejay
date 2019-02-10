@@ -9,7 +9,8 @@ import {
   InfoWrapper,
   StyledInput,
   StyledTextArea,
-  StyledTrashIcon
+  StyledTrashIcon,
+  StyledCheckmarkIcon
 } from "./styles";
 
 export class Idea extends Component {
@@ -17,7 +18,8 @@ export class Idea extends Component {
     title: undefined,
     body: undefined,
     bodyLength: undefined,
-    isBodyFocused: false
+    isBodyFocused: false,
+    didUpdateSuccessfully: false
   };
 
   // Setting field values on willMount ensures it is an uncontrolled
@@ -54,7 +56,13 @@ export class Idea extends Component {
 
   render() {
     const { id, dateCreated, onIdeaDeleteClick } = this.props;
-    const { title, body, bodyLength, isBodyFocused } = this.state;
+    const {
+      title,
+      body,
+      bodyLength,
+      isBodyFocused,
+      didUpdateSuccessfully
+    } = this.state;
     const characterThreshold = 15;
     const charactersRemaining = MAX_CHARACTER_COUNT - bodyLength;
     const isBodyBelowThreshold = charactersRemaining <= characterThreshold;
@@ -87,11 +95,14 @@ export class Idea extends Component {
             <StyledTrashIcon width={20} height={20} />
           </IconButton>
 
-          {isBodyFocused && isBodyBelowThreshold && (
-            <Counter charactersRemaining={charactersRemaining}>
-              {charactersRemaining}
-            </Counter>
-          )}
+          <StyledCheckmarkIcon isChecked={didUpdateSuccessfully} />
+
+          <Counter
+            charactersRemaining={charactersRemaining}
+            isVisible={isBodyFocused && isBodyBelowThreshold}
+          >
+            {charactersRemaining}
+          </Counter>
         </InfoWrapper>
       </Container>
     );
