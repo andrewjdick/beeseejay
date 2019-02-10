@@ -1,9 +1,18 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { TextArea } from "components/inputs/TextArea";
 import { TrashIcon } from "components/icons/TrashIcon";
 import { media } from "media.js";
 
-const CARD_DIMENSION = 150;
+export const CARD_DIMENSION = 150;
+export const CARD_SPACING = 10;
+
+export const baseCardStyles = css`
+  height: ${CARD_DIMENSION}px;
+  width: ${CARD_DIMENSION}px;
+  margin: ${CARD_SPACING}px;
+  padding: ${CARD_SPACING}px;
+  border-radius: 5px;
+`;
 
 export const StyledTrashIcon = styled(TrashIcon)`
   opacity: 0;
@@ -18,12 +27,11 @@ export const StyledTrashIcon = styled(TrashIcon)`
 `;
 
 export const Container = styled.div`
+  ${baseCardStyles};
+
   width: 100%;
   height: ${CARD_DIMENSION * 1.5}px;
   box-shadow: rgba(200, 200, 200, 0.5) 0px 2px 4px;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;

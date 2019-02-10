@@ -4,6 +4,7 @@ import { getIdeas, addIdea, updateIdea, deleteIdea } from "api/endpoints";
 import { IconButton } from "components/IconButton";
 import { Idea } from "./Idea";
 import { NoIdea } from "./NoIdea";
+import { NewIdea } from "./NewIdea";
 import {
   HeaderWrapper,
   HeaderInnerWrapper,
@@ -40,7 +41,7 @@ export class Ideas extends Component {
   componentDidMount() {
     const { ideas, sortBy } = this.getLocalStorage();
 
-    if (ideas && sortBy) {
+    if (ideas.length && sortBy) {
       this.setState({
         ideas,
         sortBy,
@@ -171,6 +172,8 @@ export class Ideas extends Component {
                   onIdeaUpdate={(id, param) => this.handleIdeaUpdate(id, param)}
                 />
               ))}
+
+              <NewIdea onClick={() => this.handleIdeaAddDebounced()} />
             </IdeaInnerContainer>
           </IdeaContainer>
         ) : (
