@@ -9,6 +9,12 @@ export const StyledTrashIcon = styled(TrashIcon)`
   opacity: 0;
   pointer-events: none;
   transition: opacity 100ms linear;
+  padding: 10px;
+  box-sizing: content-box;
+
+  ${media.tablet`
+    padding: 0;
+  `};
 `;
 
 export const Container = styled.div`
@@ -30,9 +36,17 @@ export const Container = styled.div`
     }
   }
 
+  &:last-child {
+    margin-bottom: 2em;
+  }
+
   ${media.tablet`
     width: ${CARD_DIMENSION}px;
     height: ${CARD_DIMENSION}px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   `}
 `;
 
@@ -41,17 +55,28 @@ export const StyledTextArea = styled(TextArea)`
   min-width: 100%;
   max-width: 100%;
   resize: none;
-  margin: 5px 0;
+  margin-top: 5px;
   padding: 5px;
 `;
 
-export const Counter = styled.div`
+export const Counter = styled.span`
+  padding: 10px;
+  font-size: 1.1rem;
   color: ${({ charactersRemaining }) =>
     charactersRemaining <= 5 ? "red" : "orange"};
+
+  ${media.tablet`
+    padding: 0 5px;
+  `};
 `;
 
 export const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 25px;
+
+  ${media.tablet`
+    margin-top: 5px;
+  `};
 `;

@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from "react";
 import { debounce } from "throttle-debounce";
 import { getIdeas, addIdea, updateIdea, deleteIdea } from "api/endpoints";
-import { Header } from "./Header";
 import { Idea } from "./Idea";
 import { NoIdea } from "./NoIdea";
 import {
+  HeaderWrapper,
+  HeaderInnerWrapper,
   IdeaContainer,
   IdeaInnerContainer,
   UtilityContainer,
   SelectContainer,
   SelectLabel,
-  StyledSelect
+  StyledLoading,
+  StyledSelect,
+  StyledPlusIcon
 } from "./styles";
 
 const SORT_OPTIONS = [
@@ -113,14 +116,16 @@ export class Ideas extends Component {
     const isIdeasEmpty = Boolean(!ideas.length);
 
     return (
-      <React.Fragment>
-        <Header
-          isFirstLoad={isFirstLoad}
-          onIdeaAdd={() => this.handleIdeaAddDebounced()}
-        />
+      <Fragment>
+        <HeaderWrapper>
+          <HeaderInnerWrapper>
+            <StyledLoading isLoading={isLoading} />
+            <StyledPlusIcon onClick={() => this.handleIdeaAddDebounced()} />
+          </HeaderInnerWrapper>
+        </HeaderWrapper>
 
         {!isIdeasEmpty ? (
-          <Fragment>
+          <IdeaContainer>
             <UtilityContainer>
               <SelectContainer>
                 <SelectLabel>Sort By:</SelectLabel>
@@ -134,28 +139,24 @@ export class Ideas extends Component {
               </SelectContainer>
             </UtilityContainer>
 
-            <IdeaContainer>
-              <IdeaInnerContainer isLoading={isLoading}>
-                {ideas.map(({ id, created_date, title, body }) => (
-                  <Idea
-                    key={id}
-                    id={id}
-                    dateCreated={created_date}
-                    title={title}
-                    body={body}
-                    onIdeaDeleteClick={id => this.handleIdeaDeleteDebounced(id)}
-                    onIdeaUpdate={(id, param) =>
-                      this.handleIdeaUpdate(id, param)
-                    }
-                  />
-                ))}
-              </IdeaInnerContainer>
-            </IdeaContainer>
-          </Fragment>
+            <IdeaInnerContainer isLoading={isLoading}>
+              {ideas.map(({ id, created_date, title, body }) => (
+                <Idea
+                  key={id}
+                  id={id}
+                  dateCreated={created_date}
+                  title={title}
+                  body={body}
+                  onIdeaDeleteClick={id => this.handleIdeaDeleteDebounced(id)}
+                  onIdeaUpdate={(id, param) => this.handleIdeaUpdate(id, param)}
+                />
+              ))}
+            </IdeaInnerContainer>
+          </IdeaContainer>
         ) : (
           <NoIdea isFirstLoad={isFirstLoad} />
         )}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

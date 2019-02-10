@@ -1,13 +1,58 @@
 import styled from "styled-components";
+import { PlusIcon } from "components/icons/PlusIcon";
 import { Select } from "components/inputs/Select";
+import { Loading } from "components/Loading";
 import { media } from "media.js";
+
+export const HeaderWrapper = styled.header`
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid rgb(239, 239, 239);
+  background-color: white;
+`;
+
+export const HeaderInnerWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1em;
+`;
+
+export const Logo = styled.img`
+  width: 40px;
+  height: auto;
+`;
+
+export const StyledPlusIcon = styled(PlusIcon)`
+  margin-right: 10px;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
+
+  &:active {
+    transform: rotate(90deg) scale(0.8);
+  }
+`;
+
+export const StyledLoading = styled(Loading)`
+  margin-left: 10px;
+`;
 
 export const IdeaContainer = styled.section`
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1em;
 
   /* Ensures momentum scrolling on iOS */
   -webkit-overflow-scrolling: touch;
@@ -17,43 +62,36 @@ export const IdeaContainer = styled.section`
   `}
 `;
 
-export const IdeaInnerContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 1em;
-`;
-
 export const UtilityContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  max-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 1em;
-
-  ${media.tablet`
-    justify-content: flex-end;
-  `}
+  margin: 1em 0;
 `;
 
 export const SelectContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  align-items: center;
 
   ${media.tablet`
     flex-direction: row;
+    align-items: baseline;
   `}
 `;
 
 export const SelectLabel = styled.label`
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
+  color: whitesmoke;
+
+  ${media.tablet`
+    margin: 0 10px 10px;
+  `}
 `;
 
 export const StyledSelect = styled(Select)`
   position: relative;
   top: -2px;
+`;
+
+export const IdeaInnerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
