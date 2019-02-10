@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { string, number, func } from "prop-types";
 import { IconButton } from "components/IconButton";
 import { Input } from "components/inputs/Input";
 import { MAX_CHARACTER_COUNT } from "components/inputs/TextArea";
@@ -95,3 +96,12 @@ export class Idea extends Component {
     );
   }
 }
+
+Idea.propTypes = {
+  id: string.isRequired(),
+  dateCreated: number.isRequired(),
+  title: string,
+  body: string,
+  onIdeaUpdate: func,
+  onIdeaDeleteClick: func
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import { node, number } from "prop-types";
 import { Svg } from "./styles";
 
 export const Icon = ({ width, height, children, ...props }) => (
@@ -22,4 +23,10 @@ export const Icon = ({ width, height, children, ...props }) => (
 Icon.defaultProps = {
   width: 32,
   height: 32
+};
+
+Icon.propTypes = {
+  children: node.isRequired(),
+  width: number,
+  height: number
 };

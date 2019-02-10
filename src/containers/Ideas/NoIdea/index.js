@@ -1,4 +1,5 @@
 import React from "react";
+import { boolean } from "prop-types";
 import { Container, InnerContainer, Title, Subtitle } from "./styles";
 
 export const NoIdea = ({ isFirstLoad, ...props }) => (
@@ -16,3 +17,7 @@ export const NoIdea = ({ isFirstLoad, ...props }) => (
     )}
   </Container>
 );
+
+NoIdea.propTypes = {
+  isFirstLoad: boolean
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import { arrayOf, shape, string } from "prop-types";
 
 export const Select = ({ options, ...props }) => (
   <select {...props}>
@@ -9,3 +10,12 @@ export const Select = ({ options, ...props }) => (
     ))}
   </select>
 );
+
+Select.propTypes = {
+  options: arrayOf(
+    shape({
+      value: string,
+      label: string
+    })
+  ).isRequired()
+};
