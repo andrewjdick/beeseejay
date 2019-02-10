@@ -3,6 +3,7 @@ import { IconButton } from "components/IconButton";
 import { PlusIcon } from "components/icons/PlusIcon";
 import { Select } from "components/inputs/Select";
 import { Loading } from "components/Loading";
+import { baseCardStyles } from "./Idea/styles";
 import { media } from "media.js";
 
 export const HeaderWrapper = styled.header`
@@ -29,6 +30,10 @@ export const Logo = styled.img`
 
 export const PlusIconButton = styled(IconButton)`
   margin-right: 10px;
+
+  ${media.tablet`
+    display: none;
+  `};
 `;
 export const StyledPlusIcon = styled(PlusIcon)`
   &:hover {
@@ -61,7 +66,7 @@ export const IdeaContainer = styled.section`
 
   ${media.tablet`
     display: block;
-  `}
+  `};
 `;
 
 export const UtilityContainer = styled.div`
@@ -76,7 +81,7 @@ export const SelectContainer = styled.div`
   ${media.tablet`
     flex-direction: row;
     align-items: baseline;
-  `}
+  `};
 `;
 
 export const SelectLabel = styled.label`
@@ -96,4 +101,40 @@ export const StyledSelect = styled(Select)`
 export const IdeaInnerContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+
+export const NewIdeaPlusIcon = styled(PlusIcon)`
+  color: rgba(200, 200, 200, 0.6);
+`;
+
+export const NewIdeaButton = styled.button`
+  ${baseCardStyles};
+
+  display: none;
+  outline: none;
+  border: 1px dashed rgba(200, 200, 200, 0.6);
+  background-color: transparent;
+  transition: all 200ms linear;
+
+  &:hover {
+    border-color: rgba(200, 200, 200, 0.8);
+    box-shadow: 0px 0px 5px 2px rgba(200, 200, 200, 0.2);
+
+    ${NewIdeaPlusIcon} {
+      color: rgba(200, 200, 200, 0.8);
+    }
+  }
+
+  &:active {
+    border-color: rgb(200, 200, 200);
+    transform: scale(0.95);
+
+    ${NewIdeaPlusIcon} {
+      color: rgb(200, 200, 200);
+    }
+  }
+
+  ${media.tablet`
+    display: inline-block;
+  `};
 `;

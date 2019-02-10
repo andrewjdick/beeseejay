@@ -1,21 +1,22 @@
 import React, { Component, Fragment } from "react";
 import { debounce } from "throttle-debounce";
 import { getIdeas, addIdea, updateIdea, deleteIdea } from "api/endpoints";
-import { IconButton } from "components/IconButton";
 import { Idea } from "./Idea";
 import { NoIdea } from "./NoIdea";
-import { NewIdea } from "./NewIdea";
 import {
-  HeaderWrapper,
   HeaderInnerWrapper,
+  HeaderWrapper,
   IdeaContainer,
   IdeaInnerContainer,
-  UtilityContainer,
+  NewIdeaButton,
+  NewIdeaPlusIcon,
+  PlusIconButton,
   SelectContainer,
   SelectLabel,
   StyledLoading,
   StyledSelect,
-  StyledPlusIcon
+  StyledPlusIcon,
+  UtilityContainer
 } from "./styles";
 
 const SORT_OPTIONS = [
@@ -139,9 +140,9 @@ export class Ideas extends Component {
         <HeaderWrapper>
           <HeaderInnerWrapper>
             <StyledLoading isLoading={isLoading} />
-            <IconButton onClick={() => this.handleIdeaAddDebounced()}>
+            <PlusIconButton onClick={() => this.handleIdeaAddDebounced()}>
               <StyledPlusIcon />
-            </IconButton>
+            </PlusIconButton>
           </HeaderInnerWrapper>
         </HeaderWrapper>
 
@@ -173,7 +174,9 @@ export class Ideas extends Component {
                 />
               ))}
 
-              <NewIdea onClick={() => this.handleIdeaAddDebounced()} />
+              <NewIdeaButton onClick={() => this.handleIdeaAddDebounced()}>
+                <NewIdeaPlusIcon />
+              </NewIdeaButton>
             </IdeaInnerContainer>
           </IdeaContainer>
         ) : (
