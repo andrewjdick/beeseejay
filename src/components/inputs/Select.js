@@ -17,5 +17,5 @@ Select.propTypes = {
       value: string,
       label: string
     })
-  ).isRequired()
+  ).isRequired
 };

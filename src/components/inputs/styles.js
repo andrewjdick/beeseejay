@@ -23,7 +23,6 @@ export const StyledInput = styled.input`
   ${baseInputStyles};
 
   text-overflow: ellipsis;
-  font-weight: bold;
   font-size: 1.5rem;
   line-height: 1.6rem;
 

@@ -1,8 +1,9 @@
 import React from "react";
-import { boolean } from "prop-types";
+import { boolean, func } from "prop-types";
 import { Container, InnerContainer, Title, Subtitle } from "./styles";
+import { NewIdeaButton, NewIdeaPlusIcon } from "../styles";
 
-export const NoIdea = ({ isFirstLoad, ...props }) => (
+export const NoIdea = ({ isFirstLoad, onIdeaAddClick, ...props }) => (
   <Container>
     {isFirstLoad ? (
       <InnerContainer>
@@ -11,6 +12,9 @@ export const NoIdea = ({ isFirstLoad, ...props }) => (
       </InnerContainer>
     ) : (
       <InnerContainer>
+        <NewIdeaButton onClick={() => onIdeaAddClick()}>
+          <NewIdeaPlusIcon />
+        </NewIdeaButton>
         <Title>You currently have no cards</Title>
         <Subtitle>Click the add icon to get started</Subtitle>
       </InnerContainer>
@@ -19,5 +23,6 @@ export const NoIdea = ({ isFirstLoad, ...props }) => (
 );
 
 NoIdea.propTypes = {
-  isFirstLoad: boolean
+  isFirstLoad: boolean,
+  onIdeaAddClick: func
 };

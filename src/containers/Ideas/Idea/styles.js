@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Input } from "components/inputs/Input";
 import { TextArea } from "components/inputs/TextArea";
 import { TrashIcon } from "components/icons/TrashIcon";
 import { media } from "media.js";
@@ -56,6 +57,10 @@ export const Container = styled.div`
       margin-bottom: 0;
     }
   `}
+`;
+
+export const StyledInput = styled(Input)`
+  font-weight: bold;
 `;
 
 export const StyledTextArea = styled(TextArea)`

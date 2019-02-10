@@ -7,6 +7,7 @@ import {
   Container,
   Counter,
   InfoWrapper,
+  StyledInput,
   StyledTextArea,
   StyledTrashIcon
 } from "./styles";
@@ -63,7 +64,7 @@ export class Idea extends Component {
         <Input type="hidden" value={id} readOnly />
         <Input type="hidden" value={dateCreated} readOnly />
 
-        <Input
+        <StyledInput
           value={title}
           placeholder="Enter a title..."
           onBlur={() => this.handleInputBlur(id, { title })}
@@ -98,8 +99,8 @@ export class Idea extends Component {
 }
 
 Idea.propTypes = {
-  id: string.isRequired(),
-  dateCreated: number.isRequired(),
+  id: string.isRequired,
+  dateCreated: number.isRequired,
   title: string,
   body: string,
   onIdeaUpdate: func,

@@ -180,7 +180,10 @@ export class Ideas extends Component {
             </IdeaInnerContainer>
           </IdeaContainer>
         ) : (
-          <NoIdea isFirstLoad={isFirstLoad} />
+          <NoIdea
+            onIdeaAddClick={() => this.handleIdeaAddDebounced()}
+            isFirstLoad={isFirstLoad}
+          />
         )}
       </Fragment>
     );

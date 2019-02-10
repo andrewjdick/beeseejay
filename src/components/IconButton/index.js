@@ -7,5 +7,5 @@ export const IconButton = ({ children, ...props }) => (
 );
 
 IconButton.propTypes = {
-  children: node.isRequired()
+  children: node.isRequired
 };

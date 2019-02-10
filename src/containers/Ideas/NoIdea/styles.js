@@ -15,7 +15,7 @@ export const InnerContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-  margin-bottom: 1em;
+  margin: 1em 0;
   font-weight: bold;
   font-size: 1.3rem;
   line-height: 1.5rem;

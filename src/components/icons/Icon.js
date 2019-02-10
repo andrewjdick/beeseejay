@@ -26,7 +26,7 @@ Icon.defaultProps = {
 };
 
 Icon.propTypes = {
-  children: node.isRequired(),
+  children: node.isRequired,
   width: number,
   height: number
 };
