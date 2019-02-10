@@ -1,5 +1,5 @@
 import React from "react";
-import { boolean } from "prop-types";
+import { bool } from "prop-types";
 import brandLogo from "assets/images/logo.png";
 import { Container, Spinner } from "./styles";
 
@@ -14,5 +14,5 @@ export const Loading = ({ isLoading, ...props }) => (
 );
 
 Loading.propTypes = {
-  isLoading: boolean
+  isLoading: bool
 };

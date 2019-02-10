@@ -1,5 +1,5 @@
 import React from "react";
-import { boolean, func } from "prop-types";
+import { bool, func } from "prop-types";
 import { Container, InnerContainer, Title, Subtitle } from "./styles";
 import { NewIdeaButton, NewIdeaPlusIcon } from "../styles";
 
@@ -23,6 +23,6 @@ export const NoIdea = ({ isFirstLoad, onIdeaAddClick, ...props }) => (
 );
 
 NoIdea.propTypes = {
-  isFirstLoad: boolean,
+  isFirstLoad: bool,
   onIdeaAddClick: func
 };
