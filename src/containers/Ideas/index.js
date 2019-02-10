@@ -30,29 +30,72 @@ export class Ideas extends Component {
   };
 
   // Debounce to prevent the user spamming the add icon to make multiple cards.
-  handleIdeaAddDebounced = debounce(200, this.handleIdeaAdd);
+  handleIdeaAddDebounced = debounce(250, this.handleIdeaAdd);
 
   // Debounce here prevents the user clicking on the delete icon multiple times
   // the first request would delete the card, future requests would trigger a 404,
-  // since the card has been deleted on the backend.
-  handleIdeaDeleteDebounced = debounce(300, this.handleIdeaDelete);
+  handleIdeaDeleteDebounced = debounce(250, this.handleIdeaDelete);
 
-  async componentDidMount() {
-    // check local storage to see if ideas object exists
-    const localIdeas = JSON.parse(localStorage.getItem("ideas"));
+  componentDidMount() {
+    const { ideas, sortBy } = this.getLocalStorage();
 
-    // If local state exists, display those cards.
-    if (localIdeas) {
+    if (ideas && sortBy) {
       this.setState({
-        ideas: localIdeas,
-        isLoading: false,
-        isFirstLoad: false
+        ideas,
+        sortBy,
+        isFirstLoad: false,
+        isLoading: false
+      });
+    } else {
+      this.getLatestIdeas();
+      this.setState({ isFirstLoad: false });
+    }
+
+    // Save state to localStorage when user leaves/refreshes the page
+    window.addEventListener("beforeunload", () => this.setLocalStorage());
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", () => this.setLocalStorage());
+    this.setLocalStorage();
+  }
+
+  getLocalStorage() {
+    const localIdeas = JSON.parse(localStorage.getItem("ideas"));
+    const localSortBy = JSON.parse(localStorage.getItem("sortBy"));
+    return { ideas: localIdeas, sortBy: localSortBy };
+  }
+
+  setLocalStorage(key, value) {
+    const { ideas, sortBy } = this.state;
+    localStorage.setItem("ideas", JSON.stringify(ideas));
+    localStorage.setItem("sortBy", JSON.stringify(sortBy));
+  }
+
+  handleSortIdeas(field) {
+    this.setState({ sortBy: field }, () => this.getLatestIdeas());
+  }
+
+  // Sort ideas with the native sort() method. I'd usually use sortBy() from the Lodash library.
+  sortIdeas(ideas) {
+    const { sortBy } = this.state;
+
+    let sortedIdeas = ideas;
+
+    if (sortBy === "title") {
+      sortedIdeas = ideas.sort((a, b) => {
+        // Newly created ideas will have undefined fields. Fallback to an empty string if they do not yet exist.
+        const nameA = a[sortBy] ? a[sortBy].toUpperCase() : "";
+        const nameB = b[sortBy] ? b[sortBy].toUpperCase() : "";
+        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
       });
     }
 
-    // If not, make a fresh get request
-    await this.getLatestIdeas();
-    this.setState({ isFirstLoad: false });
+    if (sortBy === "created_date") {
+      sortedIdeas = ideas.sort((a, b) => a[sortBy] - b[sortBy]);
+    }
+
+    return sortedIdeas;
   }
 
   // Get the latest ideas from the backend and sort them by either title or created_date.
@@ -62,7 +105,6 @@ export class Ideas extends Component {
     const ideas = await getIdeas();
     const sortedIdeas = this.sortIdeas(ideas);
     this.setState({ ideas: sortedIdeas, isLoading: false });
-    localStorage.setItem("ideas", JSON.stringify(sortedIdeas));
   }
 
   // Add the idea to the backend, then retrieve the latest list.
@@ -86,33 +128,8 @@ export class Ideas extends Component {
     this.getLatestIdeas();
   }
 
-  handleSortIdeas(field) {
-    this.setState({ sortBy: field }, () => this.getLatestIdeas());
-  }
-
-  // Sort ideas with the native sort() method. I'd usually use sortBy() from the Lodash library.
-  sortIdeas(ideas) {
-    const { sortBy } = this.state;
-    let sortedIdeas = ideas;
-
-    if (sortBy === "title") {
-      sortedIdeas = ideas.sort((a, b) => {
-        // Newly created ideas will have undefined fields. Fallback to an empty string if they do not yet exist.
-        const nameA = a[sortBy] ? a[sortBy].toUpperCase() : "";
-        const nameB = b[sortBy] ? b[sortBy].toUpperCase() : "";
-        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
-      });
-    }
-
-    if (sortBy === "created_date") {
-      sortedIdeas = ideas.sort((a, b) => a[sortBy] - b[sortBy]);
-    }
-
-    return sortedIdeas;
-  }
-
   render() {
-    const { ideas, isLoading, isFirstLoad } = this.state;
+    const { ideas, sortBy, isLoading, isFirstLoad } = this.state;
     const isIdeasEmpty = Boolean(!ideas.length);
 
     return (
@@ -130,7 +147,7 @@ export class Ideas extends Component {
               <SelectContainer>
                 <SelectLabel>Sort By:</SelectLabel>
                 <StyledSelect
-                  defaultValue={SORT_OPTIONS[0].value}
+                  defaultValue={sortBy}
                   options={SORT_OPTIONS}
                   onChange={({ target: { value } }) =>
                     this.handleSortIdeas(value)
