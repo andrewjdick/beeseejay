@@ -27,6 +27,7 @@ const SORT_OPTIONS = [
 export class Ideas extends Component {
   state = {
     ideas: [],
+    updatedIdeas: [],
     sortBy: SORT_OPTIONS[0].value,
     isLoading: true,
     isFirstLoad: true
@@ -75,7 +76,9 @@ export class Ideas extends Component {
   }
 
   handleSortIdeas(field) {
-    this.setState({ sortBy: field }, () => this.getLatestIdeas());
+    this.setState({ sortBy: field, isLoading: true }, () =>
+      this.getLatestIdeas()
+    );
   }
 
   // Sort ideas with the native sort() method. I'd usually use sortBy() from the Lodash library.
@@ -105,36 +108,56 @@ export class Ideas extends Component {
   // Once the latest ideas are stored in state, save a copy of them to local storage.
   async getLatestIdeas(cb) {
     const ideas = await getIdeas();
-    const sortedIdeas = this.sortIdeas(ideas);
-    this.setState({ ideas: sortedIdeas, isLoading: false }, cb);
+
+    if (ideas) {
+      const sortedIdeas = this.sortIdeas(ideas);
+      this.setState({ ideas: sortedIdeas, isLoading: false }, cb);
+    }
   }
 
-  // Add the idea to the backend, then retrieve the latest list.
+  // Add the idea to the backend
   async handleIdeaAdd() {
     this.setState({ isLoading: true });
-    await addIdea();
-    this.getLatestIdeas();
+
+    const newIdea = await addIdea();
+
+    if (newIdea) {
+      this.getLatestIdeas();
+    }
   }
 
   // Update an existing idea on the backend, then retrieve the latest list.
   async handleIdeaUpdate(id, value) {
     this.setState({ isLoading: true });
-    await updateIdea(id, value);
-    this.getLatestIdeas();
+
+    const { updatedIdeas } = this.state;
+    const updatedIdea = await updateIdea(id, value);
+
+    // On a successful response from updateIdea, briefly store the updated idea id to display
+    // the notification updated icon on the card.
+    if (updatedIdea) {
+      this.setState({ updatedIdeas: [...updatedIdeas, updatedIdea.id] }, () => {
+        setTimeout(() => this.setState({ updatedIdeas }), 2000);
+      });
+
+      this.getLatestIdeas();
+    }
   }
 
   // Delete an existing idea on the backend, then retrieve the latest list.
   async handleIdeaDelete(id) {
     this.setState({ isLoading: true });
-    await deleteIdea(id);
-    this.getLatestIdeas();
+
+    const deletedIdea = await deleteIdea(id);
+
+    if (deletedIdea) {
+      this.getLatestIdeas();
+    }
   }
 
   render() {
-    const { ideas, sortBy, isLoading, isFirstLoad } = this.state;
+    const { ideas, updatedIdeas, sortBy, isLoading, isFirstLoad } = this.state;
     const isIdeasEmpty = Boolean(!ideas.length);
-
-    // console.log({ isFirstLoad, ideas });
 
     return (
       <Fragment>
@@ -170,6 +193,7 @@ export class Ideas extends Component {
                   dateCreated={created_date}
                   title={title}
                   body={body}
+                  isUpdated={updatedIdeas.includes(id)}
                   onIdeaDeleteClick={id => this.handleIdeaDeleteDebounced(id)}
                   onIdeaUpdate={(id, param) => this.handleIdeaUpdate(id, param)}
                 />

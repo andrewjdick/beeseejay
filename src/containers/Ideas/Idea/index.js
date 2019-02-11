@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { string, number, func } from "prop-types";
+import { string, number, bool, func } from "prop-types";
 import { IconButton } from "components/IconButton";
 import { Input } from "components/inputs/Input";
 import { MAX_CHARACTER_COUNT } from "components/inputs/TextArea";
@@ -18,8 +18,7 @@ export class Idea extends Component {
     title: undefined,
     body: undefined,
     bodyLength: undefined,
-    isBodyFocused: false,
-    didUpdateSuccessfully: false
+    isBodyFocused: false
   };
 
   // Setting field values on willMount ensures it is an uncontrolled
@@ -55,14 +54,8 @@ export class Idea extends Component {
   }
 
   render() {
-    const { id, dateCreated, onIdeaDeleteClick } = this.props;
-    const {
-      title,
-      body,
-      bodyLength,
-      isBodyFocused,
-      didUpdateSuccessfully
-    } = this.state;
+    const { id, dateCreated, isUpdated, onIdeaDeleteClick } = this.props;
+    const { title, body, bodyLength, isBodyFocused } = this.state;
     const characterThreshold = 15;
     const charactersRemaining = MAX_CHARACTER_COUNT - bodyLength;
     const isBodyBelowThreshold = charactersRemaining <= characterThreshold;
@@ -95,7 +88,7 @@ export class Idea extends Component {
             <StyledTrashIcon width={20} height={20} />
           </IconButton>
 
-          <StyledCheckmarkIcon isChecked={didUpdateSuccessfully} />
+          <StyledCheckmarkIcon isChecked={isUpdated} />
 
           <Counter
             charactersRemaining={charactersRemaining}
@@ -114,6 +107,7 @@ Idea.propTypes = {
   dateCreated: number.isRequired,
   title: string,
   body: string,
+  isUpdated: bool,
   onIdeaUpdate: func,
   onIdeaDeleteClick: func
 };
