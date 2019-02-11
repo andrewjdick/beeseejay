@@ -3,7 +3,13 @@ import styled, { createGlobalStyle } from "styled-components";
 import { configure, addDecorator } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 
-const Block = styled.div``;
+const Block = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const GlobalStyle = createGlobalStyle`
   html, body, div#root {
@@ -18,7 +24,6 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0, 0.8);
   }
 `;
 

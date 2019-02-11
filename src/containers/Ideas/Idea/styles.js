@@ -66,8 +66,6 @@ export const StyledInput = styled(Input)`
 
 export const StyledTextArea = styled(TextArea)`
   flex: 1;
-  min-width: 100%;
-  max-width: 100%;
   resize: none;
   margin-top: 5px;
   padding: 5px;

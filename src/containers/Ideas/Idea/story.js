@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { text } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { NewIdeaButton, NewIdeaPlusIcon } from "../styles";
 import { Idea } from "./";
@@ -10,8 +10,7 @@ storiesOf("Containers/Ideas/Idea", module)
     <Idea
       id="abcde-12345-fghij-67890"
       dateCreated={new Date().getTime()}
-      title={text("title")}
-      body={text("body")}
+      isUpdated={boolean("update notification", false)}
       onIdeaDeleteClick={action("Idea deleted")}
       onIdeaUpdate={action("Idea updating")}
     />

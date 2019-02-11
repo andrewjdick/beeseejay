@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { number, text } from "@storybook/addon-knobs";
+import { text } from "@storybook/addon-knobs";
 import { Input } from "./Input";
 import { Select } from "./Select";
 import { TextArea } from "./TextArea";
@@ -10,11 +10,6 @@ const selectOptions = [
   { value: "created_date", label: "Date Created" },
   { value: "title", label: "Title" }
 ];
-
-export const textAreaOptions = {
-  min: 0,
-  max: 150
-};
 
 storiesOf("Components/inputs", module)
   .add("Input", () => (
@@ -41,7 +36,7 @@ storiesOf("Components/inputs", module)
       autoFocus
       value={text("value")}
       placeholder={text("placeholder", "Enter text here...")}
-      maxLength={number("max characters", 150, textAreaOptions)}
+      maxLength={text("max characters", "150")}
       onChange={action("text area updated")}
       onBlur={action("text area blurred")}
       onFocus={action("text area focused")}
