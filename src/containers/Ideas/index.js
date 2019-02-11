@@ -42,7 +42,7 @@ export class Ideas extends Component {
   componentDidMount() {
     const { ideas, sortBy } = this.getLocalStorage();
 
-    if (ideas.length && sortBy) {
+    if (ideas && sortBy) {
       this.setState({
         ideas,
         sortBy,
@@ -50,8 +50,7 @@ export class Ideas extends Component {
         isLoading: false
       });
     } else {
-      this.getLatestIdeas();
-      this.setState({ isFirstLoad: false });
+      this.getLatestIdeas(() => this.setState({ isFirstLoad: false }));
     }
 
     // Save state to localStorage when user leaves/refreshes the page
@@ -104,10 +103,10 @@ export class Ideas extends Component {
   // Get the latest ideas from the backend and sort them by either title or created_date.
   // I'm sorting here for the FE challenge, but it would be more efficient to send queryStrings and sort server-side.
   // Once the latest ideas are stored in state, save a copy of them to local storage.
-  async getLatestIdeas() {
+  async getLatestIdeas(cb) {
     const ideas = await getIdeas();
     const sortedIdeas = this.sortIdeas(ideas);
-    this.setState({ ideas: sortedIdeas, isLoading: false });
+    this.setState({ ideas: sortedIdeas, isLoading: false }, cb);
   }
 
   // Add the idea to the backend, then retrieve the latest list.
@@ -134,6 +133,8 @@ export class Ideas extends Component {
   render() {
     const { ideas, sortBy, isLoading, isFirstLoad } = this.state;
     const isIdeasEmpty = Boolean(!ideas.length);
+
+    // console.log({ isFirstLoad, ideas });
 
     return (
       <Fragment>
