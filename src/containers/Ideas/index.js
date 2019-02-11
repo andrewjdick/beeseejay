@@ -137,10 +137,9 @@ export class Ideas extends Component {
     // the notification updated icon on the card.
     if (updatedIdea) {
       this.setState({ updatedIdeas: [...updatedIdeas, updatedIdea.id] }, () => {
+        this.getLatestIdeas();
         setTimeout(() => this.setState({ updatedIdeas }), 2000);
       });
-
-      this.getLatestIdeas();
     }
   }
 
