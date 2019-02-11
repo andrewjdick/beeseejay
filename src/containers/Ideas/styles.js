@@ -55,15 +55,10 @@ export const IdeaContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto;
-  overflow-x: hidden;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   padding: 1em;
-
-  /* Ensures momentum scrolling on iOS */
-  -webkit-overflow-scrolling: touch;
 
   ${media.tablet`
     display: block;

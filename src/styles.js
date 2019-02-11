@@ -19,8 +19,7 @@ export const GlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   
   body, div#root {
@@ -28,11 +27,9 @@ export const GlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
 		font-weight: 400;
     font-size: 1rem;
 		line-height: 1.2rem;
-    overflow: hidden;
     
     ${media.tablet`
 		  font-weight: 400;
@@ -44,10 +41,9 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const AppWrapper = styled.main`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   background-color: #333f48;
 `;
