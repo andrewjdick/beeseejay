@@ -8,12 +8,11 @@ export const getIdeas = () =>
     method: FETCH_TYPES.GET
   });
 
-export const addIdea = () => {
+export const addIdea = () =>
   fetchRequest({
     url: IDEAS_ENDPOINT_URL,
     method: FETCH_TYPES.POST
   });
-};
 
 export const updateIdea = (id, param) =>
   fetchRequest({
