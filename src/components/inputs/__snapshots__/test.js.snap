@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders input correctly 1`] = `
+<input
+  className="sc-bdVaJa kDxWQv"
+  type="text"
+/>
+`;
+
+exports[`renders select correctly 1`] = `
+<select>
+  <option
+    value="456"
+  />
+</select>
+`;
+
+exports[`renders textArea correctly 1`] = `
+<textarea
+  className="sc-bwzfXH iUyqPM"
+  maxLength="150"
+/>
+`;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="sc-bdVaJa kcLQln"
+>
+  <img
+    alt="BCG Digital Ventures logo"
+    className="sc-bwzfXH hruRYZ"
+    src="logo.png"
+  />
+</div>
+`;
+
+exports[`renders loading correctly 1`] = `
+<div
+  className="sc-bdVaJa kcLQln"
+>
+  <img
+    alt="BCG Digital Ventures logo"
+    className="sc-bwzfXH jZOxdD"
+    src="logo.png"
+  />
+</div>
+`;
