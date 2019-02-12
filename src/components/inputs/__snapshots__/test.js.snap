@@ -2,7 +2,7 @@
 
 exports[`Input renders correctly 1`] = `
 <input
-  className="sc-bdVaJa kDxWQv"
+  className="sc-bdVaJa bVFsUj"
   type="text"
 />
 `;
@@ -20,7 +20,7 @@ exports[`Select renders correctly 1`] = `
 
 exports[`TextArea renders correctly 1`] = `
 <textarea
-  className="sc-bwzfXH iUyqPM"
+  className="sc-bwzfXH eBguEi"
   maxLength="150"
 />
 `;

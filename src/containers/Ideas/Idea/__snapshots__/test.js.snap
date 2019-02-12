@@ -1,24 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input renders correctly 1`] = `
+exports[`Idea card renders correctly 1`] = `
 <div
   className="sc-EHOje jQfXPD"
 >
   <input
-    className="sc-bwzfXH eMpGSe"
+    className="sc-bwzfXH lckxQt"
     readOnly={true}
     type="hidden"
     value="1234-abcd-5678-efgh-9101"
   />
   <input
-    className="sc-bwzfXH eMpGSe"
+    className="sc-bwzfXH lckxQt"
     readOnly={true}
     type="hidden"
     value={1549985336574}
   />
   <input
     autoFocus={true}
-    className="sc-bZQynM kihKbR sc-bwzfXH eMpGSe"
+    className="sc-bZQynM kihKbR sc-bwzfXH lckxQt"
     data-testid="input-title"
     onBlur={[Function]}
     onChange={[Function]}
@@ -27,7 +27,7 @@ exports[`Input renders correctly 1`] = `
     value="Test title"
   />
   <textarea
-    className="sc-gzVnrw eNaKsR sc-htpNat eoidjl"
+    className="sc-gzVnrw eNaKsR sc-htpNat hWMgvE"
     data-testid="input-description"
     maxLength="150"
     onBlur={[Function]}
