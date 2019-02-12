@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders correctly 1`] = `
+<div
+  className="sc-EHOje jQfXPD"
+>
+  <input
+    className="sc-bwzfXH eMpGSe"
+    readOnly={true}
+    type="hidden"
+    value="1234-abcd-5678-efgh-9101"
+  />
+  <input
+    className="sc-bwzfXH eMpGSe"
+    readOnly={true}
+    type="hidden"
+    value={1549985336574}
+  />
+  <input
+    autoFocus={true}
+    className="sc-bZQynM kihKbR sc-bwzfXH eMpGSe"
+    data-testid="input-title"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Enter a title..."
+    type="text"
+    value="Test title"
+  />
+  <textarea
+    className="sc-gzVnrw eNaKsR sc-htpNat eoidjl"
+    data-testid="input-description"
+    maxLength="150"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Enter a description..."
+    value=""
+  />
+  <div
+    className="sc-dnqmqq gxdubg"
+  >
+    <button
+      className="sc-ifAKCX jbICHU sc-bxivhb ekczNV"
+      data-testid="action-delete"
+      onClick={[Function]}
+    >
+      <svg
+        className="sc-bdVaJa iKBuLo"
+        fill="none"
+        height={20}
+        id="i-close"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        viewBox="0 0 32 32"
+        width={20}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6"
+        />
+      </svg>
+    </button>
+    <svg
+      className="sc-iwsKbI jWofvB sc-bdVaJa iKBuLo"
+      data-testid="update-success"
+      fill="none"
+      height={0}
+      id="i-close"
+      stroke="currentcolor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 32 32"
+      width={0}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2 20 L12 28 30 4"
+      />
+    </svg>
+    <span
+      className="sc-htoDjs cdhgkb"
+      data-testid="char-counter"
+    >
+      150
+    </span>
+  </div>
+</div>
+`;

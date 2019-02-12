@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { string, number, bool, func } from "prop-types";
-import { IconButton } from "components/IconButton";
+import { TrashIcon } from "components/icons/TrashIcon";
 import { Input } from "components/inputs/Input";
+
 import { MAX_CHARACTER_COUNT } from "components/inputs/TextArea";
 import {
   Container,
   Counter,
   InfoWrapper,
+  TrashIconButton,
   StyledInput,
   StyledTextArea,
-  StyledTrashIcon,
   StyledCheckmarkIcon
 } from "./styles";
 
@@ -66,6 +67,7 @@ export class Idea extends Component {
         <Input type="hidden" value={dateCreated} readOnly />
 
         <StyledInput
+          data-testid="input-title"
           value={title}
           placeholder="Enter a title..."
           onBlur={() => this.handleInputBlur(id, { title })}
@@ -74,23 +76,34 @@ export class Idea extends Component {
         />
 
         <StyledTextArea
+          data-testid="input-description"
           value={body}
           placeholder="Enter a description..."
           onFocus={() => this.handleTextAreaFocus()}
           onBlur={() => this.handleInputBlur(id, { body })}
-          onChange={({ target: { value } }) =>
-            this.setState({ body: value, bodyLength: value.length })
+          onChange={event =>
+            this.setState({
+              body: event.target.value,
+              bodyLength: event.target.value.length
+            })
           }
         />
 
         <InfoWrapper>
-          <IconButton onClick={() => onIdeaDeleteClick(id)}>
-            <StyledTrashIcon width={20} height={20} />
-          </IconButton>
+          <TrashIconButton
+            data-testid="action-delete"
+            onClick={() => onIdeaDeleteClick(id)}
+          >
+            <TrashIcon width={20} height={20} />
+          </TrashIconButton>
 
-          <StyledCheckmarkIcon isChecked={isUpdated} />
+          <StyledCheckmarkIcon
+            data-testid="update-success"
+            isChecked={isUpdated}
+          />
 
           <Counter
+            data-testid="char-counter"
             charactersRemaining={charactersRemaining}
             isVisible={isBodyFocused && isBodyBelowThreshold}
           >

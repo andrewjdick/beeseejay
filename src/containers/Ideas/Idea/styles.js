@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import { Input } from "components/inputs/Input";
 import { TextArea } from "components/inputs/TextArea";
-import { TrashIcon } from "components/icons/TrashIcon";
 import { CheckmarkIcon } from "components/icons/CheckmarkIcon";
+import { IconButton } from "components/IconButton";
 import { media } from "media.js";
 
 export const CARD_DIMENSION = 150;
 export const CARD_SPACING = 10;
+export const CHECKMARK_WIDTH = 16;
 
 export const baseCardStyles = css`
   height: ${CARD_DIMENSION}px;
@@ -16,12 +17,11 @@ export const baseCardStyles = css`
   border-radius: 5px;
 `;
 
-export const StyledTrashIcon = styled(TrashIcon)`
+export const TrashIconButton = styled(IconButton)`
   opacity: 0;
   pointer-events: none;
-  transition: opacity 100ms linear;
+  transition: all 100ms linear;
   padding: 10px;
-  box-sizing: content-box;
 
   ${media.tablet`
     padding: 0;
@@ -40,7 +40,7 @@ export const Container = styled.div`
   position: relative;
 
   &:hover {
-    ${StyledTrashIcon} {
+    ${TrashIconButton} {
       opacity: 1;
       pointer-events: auto;
     }
@@ -96,8 +96,8 @@ export const InfoWrapper = styled.div`
 
 export const StyledCheckmarkIcon = styled(CheckmarkIcon).attrs(
   ({ isChecked }) => ({
-    width: isChecked ? 16 : 0,
-    height: isChecked ? 16 : 0
+    width: isChecked ? CHECKMARK_WIDTH : 0,
+    height: isChecked ? CHECKMARK_WIDTH : 0
   })
 )`
   color: green;
