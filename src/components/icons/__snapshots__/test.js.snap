@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders all icons correctly 1`] = `
+exports[`renders CheckmarkIcon correctly 1`] = `
 <svg
   className="sc-bdVaJa iKBuLo"
   fill="none"
@@ -20,7 +20,7 @@ exports[`renders all icons correctly 1`] = `
 </svg>
 `;
 
-exports[`renders all icons correctly 2`] = `
+exports[`renders CloseIcon correctly 1`] = `
 <svg
   className="sc-bdVaJa iKBuLo"
   fill="none"
@@ -40,7 +40,7 @@ exports[`renders all icons correctly 2`] = `
 </svg>
 `;
 
-exports[`renders all icons correctly 3`] = `
+exports[`renders PlusIcon correctly 1`] = `
 <svg
   className="sc-bdVaJa iKBuLo"
   fill="none"
@@ -60,7 +60,7 @@ exports[`renders all icons correctly 3`] = `
 </svg>
 `;
 
-exports[`renders all icons correctly 4`] = `
+exports[`renders TrashIcon correctly 1`] = `
 <svg
   className="sc-bdVaJa iKBuLo"
   fill="none"
