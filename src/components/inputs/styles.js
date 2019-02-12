@@ -9,7 +9,7 @@ const baseInputStyles = css`
   transition: box-shadow 100ms linear;
 
   &:focus {
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     border-radius: 2px;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
   }
